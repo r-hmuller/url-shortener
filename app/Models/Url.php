@@ -11,4 +11,8 @@ class Url extends Model
     use HasFactory, softDeletes;
 
     protected $fillable = ['full_url', 'shorten_url'];
+
+    public function clicks() {
+        return $this->hasMany(Click::class);
+    }
 }
