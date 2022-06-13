@@ -9,4 +9,4 @@ Route::get('/', function () {
 
 Route::get('/{url:shorten_url}', [UrlController::class, 'get']);
 
-Route::get('/{url:shorten_url}/stats', [UrlController::class, 'stats']);
+Route::get('/{url:shorten_url}/stats', [UrlController::class, 'show']);

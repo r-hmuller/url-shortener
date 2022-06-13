@@ -15,6 +15,10 @@ class UrlController extends Controller
         return redirect()->away($url->full_url);
     }
 
+    public function show(Url $url) {
+        return response()->view('stats', ['url' => $url]);
+    }
+
     public function stats(Url $url) {
         $allClicks = $url->clicks()->count();
         $dailyClicks = $url->clicks()->where('created_at', '>', Carbon::now()->subDay())->count();
@@ -27,6 +31,9 @@ class UrlController extends Controller
     }
 
     public function save(Request $request) {
+        $request->validate([
+            'url' => 'required|url'
+        ]);
         $fullUrl = $request->input('url');
         $shortenUrl = $this->store($fullUrl);
         return response()->json(['shortenUrl' => $shortenUrl], 201);

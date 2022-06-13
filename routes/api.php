@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/urls', [UrlController::class, 'save']);
+
+Route::get('/urls/{url:shorten_url}/stats', [UrlController::class, 'stats']);
